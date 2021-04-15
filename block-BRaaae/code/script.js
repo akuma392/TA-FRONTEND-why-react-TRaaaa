@@ -49,11 +49,11 @@ function handleWatch(event) {
 let elm = React.createElement;
 function createUI(data = allTodos, rootElm = root) {
   let ui = data.map((movie, index) => {
-    let span = elm('span', { 'data-id': index }, 'X');
+    let span = elm('span', { 'data-id': index, onClick: deleteTodo }, 'X');
     // span.addEventListener('click', deleteTodo);
     let div = elm(
       'div',
-      {},
+      { onClick: handleWatch },
       elm('h4', { 'data-id': index }, movie.isWatched ? 'watched' : 'to watch')
     );
     // div.addEventListener('click', handleWatch);

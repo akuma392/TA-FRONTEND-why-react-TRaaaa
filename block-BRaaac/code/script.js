@@ -47,31 +47,37 @@ function elm(type, attr = {}, ...children) {
 }
 function createUI(data = allTodos, rootElm = root) {
   rootElm.innerHTML = '';
-  data.forEach((elm, index) => {
-    let li = elm('li', {}, elm('p', {}, elm.todo), elm('div'));
-
-    let p = document.createElement('p');
-    p.innerText = elm.todo;
-
-    let div = document.createElement('div');
-    let h4 = document.createElement('h4');
-    h4.setAttribute('data-id', index);
-    if (elm.isWatched) {
-      h4.innerText = 'watched';
-    } else {
-      h4.innerText = 'to watch';
-    }
-    div.addEventListener('click', handleWatch);
-
-    div.append(h4);
-    let nav = document.createElement('nav');
-    let span = document.createElement('span');
-    span.setAttribute('data-id', index);
-
+  data.forEach((movie, index) => {
+    let span = elm('span', { 'data-id': index }, 'X');
     span.addEventListener('click', deleteTodo);
-    span.innerText = 'X';
-    nav.append(span);
-    li.append(p, div, nav);
+    let div = elm(
+      'div',
+      {},
+      elm('h4', { 'data-id': index }, movie.isWatched ? 'watched' : 'to watch')
+    );
+    div.addEventListener('click', handleWatch);
+    let li = elm('li', {}, elm('p', {}, movie.todo), div, elm('nav', {}, span));
+
+    // let p = document.createElement('p');
+    // p.innerText = elm.todo;
+
+    // let div = document.createElement('div');
+    // let h4 = document.createElement('h4');
+    // h4.setAttribute('data-id', index);
+
+    // h4.innerText = elm.isWatched ? 'watched' : 'to watch';
+
+    // div.addEventListener('click', handleWatch);
+
+    // div.append(h4);
+    // let nav = document.createElement('nav');
+    // let span = document.createElement('span');
+    // span.setAttribute('data-id', index);
+
+    // span.addEventListener('click', deleteTodo);
+    // span.innerText = 'X';
+    // nav.append(span);
+    // li.append(p, div, nav);
     rootElm.append(li);
   });
 }

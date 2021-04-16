@@ -54,7 +54,10 @@ function Article(props) {
       <p>{props.desciption}</p>
       <img src={props.urlToImage} alt="" width="180" />
       <p>{props.publishedAt}</p>
-      <p>{props.content}</p>
+      <button>
+        <a href={props.url}> visit website</a>
+      </button>
+      <p>{props.content.slice(0, 100)}</p>
     </div>
   );
 }

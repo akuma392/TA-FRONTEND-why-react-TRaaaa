@@ -66,23 +66,27 @@
         },
       ];
 
-      let Card = (props) => {
+      let Article = (props) => {
         console.log(props);
         return (
           <>
-            <img src={props.imageURL} alt="" />
-            <h6 className="category"> {props.category}</h6>
+            <img src={props.articleInfo.imageURL} alt="" />
+            <h6 className="category"> {props.articleInfo.category}</h6>
             <span className="date"> 26 Mar</span>
-            <h1>{props.title}</h1>
-            <h3>{props.subTitle}</h3>
-            <p>{props.description}</p>
+            <h1>{props.articleInfo.title}</h1>
+            <h3>{props.articleInfo.subTitle}</h3>
+            <p>{props.articleInfo.description}</p>
             <h5>
-              6 mins ago <i className="fas fa-comments"></i> {props.comments}
+              6 mins ago <i className="fas fa-comments"></i>{' '}
+              {props.articleInfo.comments}
             </h5>
           </>
         );
       };
 
+      function Articles() {
+        return articles.map((article) => <Article articleInfo={article} />);
+      }
       //   let li = (
       //     <>
       //       {articles.map((elm) => {
@@ -98,19 +102,7 @@
       //     </>
       //   );
 
-      let li = (
-        <>
-          <Card
-            imageURL={articles[0].imageURL}
-            category={articles[0].category}
-            title={articles[0].title}
-            subTitle={articles[0].subTitle}
-            description={articles[0].description}
-            comments={articles[0].comments}
-          />
-        </>
-      );
-      ReactDOM.render(li, root);
+      ReactDOM.render(<Articles />, root);
     </script>
   </body>
 </html>

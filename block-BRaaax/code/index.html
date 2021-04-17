@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c91808f2e8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let root = document.querySelector('#root');
+
+      function Btn1() {
+        return <button>Button</button>;
+      }
+
+      function Button(props) {
+        return (
+          <button
+            size={props.size}
+            type={props.type}
+            onClick={props.onClickHandler}
+          >
+            {props.label}
+          </button>
+        );
+      }
+      function App() {
+        return (
+          <>
+            <Btn1 />
+            <Button label="Button" />
+            <Button size="small" label="Button" type="secondary" />
+            <Button
+              size="large"
+              label="Button"
+              type="tertiary"
+              onClickHandler={() => alert('You Clicked Me!')}
+            />
+          </>
+        );
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>

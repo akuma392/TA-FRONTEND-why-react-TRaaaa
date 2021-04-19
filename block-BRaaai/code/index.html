@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c91808f2e8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let cardInfo = {
+        title: 'City Lights in New York',
+        date: new Date('2017-01-26'),
+        comments: 67,
+        subTitle: 'The city that never sleeps.',
+        description:
+          'New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.',
+        category: 'photos',
+        imageURL:
+          'https://images.unsplash.com/photo-1610874933184-7728fd666162?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
+      };
+      let root = document.querySelector('#root');
+
+      let li = (
+        <>
+          <img src={cardInfo.imageURL} alt="" />
+          <h6 className="category">{cardInfo.category}</h6>
+          <span className="date">26 Mar</span>
+          <h1>{cardInfo.title}</h1>
+          <h3>{cardInfo.subTitle}</h3>
+          <p>{cardInfo.description}</p>
+          <h5>
+            6 mins ago <i class="fas fa-comments"></i> {cardInfo.comments}
+          </h5>
+        </>
+      );
+      ReactDOM.render(li, root);
+    </script>
+  </body>
+</html>

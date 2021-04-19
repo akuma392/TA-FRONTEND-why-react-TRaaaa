@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie list</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/c91808f2e8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>Movies</h1>
+    </header>
+    <main>
+      <div class="container">
+        <div class="input-block">
+          <input
+            class="input-text"
+            id="text"
+            type="text"
+            placeholder="enter movie to watch"
+          />
+        </div>
+        <ul></ul>
+        <!-- <div>
+          <button class="All">All</button>
+          <button class="Active">Active</button>
+          <button class="Completed">Completed</button>
+          <button class="Clear">Clear Completed</button>
+        </div> -->
+      </div>
+    </main>
+  </body>
+  <script
+    src="https://unpkg.com/react@17/umd/react.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    let input = document.querySelector('#text');
+
+    let root = document.querySelector('ul');
+
+    let allTodos = [];
+
+    function handleEvent(event) {
+      // root.innerHTML = '';
+      if (event.keyCode === 13 && event.target.value !== '') {
+        allTodos.push({
+          todo: event.target.value,
+          isWatched: false,
+        });
+        event.target.value = '';
+      }
+      createUI();
+    }
+
+    function handleWatch(event) {
+      let id = event.target.dataset.id;
+      console.log(event.target.dataset.id);
+      allTodos[id].isWatched = !allTodos[id].isWatched;
+      createUI();
+    }
+
+    // function elm(type, attr = {}, ...children) {
+    //   let element = document.createElement(type);
+    //   for (let key in attr) {
+    //     if (key.startsWith('data-')) {
+    //       element.setAttribute(key, attr[key]);
+    //     } else {
+    //       element[key] = attr[key];
+    //     }
+    //   }
+
+    //   children.forEach((child) => {
+    //     if (typeof child === 'object') {
+    //       element.append(child);
+    //     }
+    //     if (typeof child === 'string') {
+    //       let node = document.createTextNode(child);
+    //       element.append(node);
+    //     }
+    //   });
+
+    //   return element;
+    // }
+
+    let elm = React.createElement;
+    function createUI(data = allTodos, rootElm = root) {
+      let ui = data.map((movie, index) => {
+        // let span = elm('span', { 'data-id': index, onClick: deleteTodo }, 'X');
+        // // span.addEventListener('click', deleteTodo);
+        // let div = elm(
+        //   'div',
+        //   { onClick: handleWatch },
+        //   elm(
+        //     'h4',
+        //     { 'data-id': index },
+        //     movie.isWatched ? 'watched' : 'to watch'
+        //   )
+        // );
+        // // div.addEventListener('click', handleWatch);
+        // let li = elm(
+        //   'li',
+        //   {},
+        //   elm('p', {}, movie.todo),
+        //   div,
+        //   elm('nav', {}, span)
+        // );
+
+        return (
+          <li>
+            <p>{movie.todo}</p>
+            <div onClick={handleWatch}>
+              <h4 data-id={index}>
+                {movie.isWatched ? 'watched' : 'to watch'}
+              </h4>
+            </div>
+            <nav>
+              <span data-id={index} onClick={deleteTodo}>
+                X
+              </span>
+            </nav>
+          </li>
+        );
+      });
+
+      ReactDOM.render(ui, rootElm);
+    }
+
+    function deleteTodo(event) {
+      console.log(event.target);
+      let id = event.target.dataset.id;
+      allTodos.splice(id, 1);
+      createUI(allTodos);
+    }
+
+    createUI();
+    input.addEventListener('keyup', handleEvent);
+  </script>
+</html>

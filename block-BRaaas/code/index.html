@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c91808f2e8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      let root = document.querySelector('#root');
+      let fruits = [
+        { id: 'apple', value: '🍎 apple' },
+        { id: 'orange', value: '🍊 orange' },
+        { id: 'grape', value: '🍇 grape' },
+        { id: 'pear', value: '🍐 pear' },
+      ];
+
+      function Click() {
+        return (
+          <button
+            onClick={() => {
+              alert('Hello React Event');
+            }}
+          >
+            Click Me
+          </button>
+        );
+      }
+      function Click1() {
+        return (
+          <button
+            onClick={() => {
+              alert(`To learn React use https://reactjs.org`);
+              alert(`React and ReactDOM works together`);
+              alert(`Babel helps in writing JSX`);
+            }}
+          >
+            How can i help you?
+          </button>
+        );
+      }
+
+      function HelloName() {
+        let names = ['Arya', 'John', 'Bran'];
+        return names.map((elm, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => {
+                alert(`Hello ${elm}`);
+              }}
+            >
+              {elm}
+            </button>
+          );
+        });
+      }
+      function ClickFruits() {
+        return fruits.map((element) => (
+          <button key={element.id} onClick={() => alert(`${element.id}`)}>
+            {element.value}
+          </button>
+        ));
+      }
+      function App() {
+        return (
+          <>
+            <Click />
+            <Click1 />
+            <HelloName />
+            <ClickFruits />
+          </>
+        );
+      }
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
